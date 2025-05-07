@@ -6,11 +6,7 @@ import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
-import {
-  FaLongArrowAltDown,
-  FaLongArrowAltRight,
-  FaQuoteLeft,
-} from 'react-icons/fa';
+import { FaLongArrowAltRight, FaQuoteLeft } from 'react-icons/fa';
 
 export default function Home() {
   return (

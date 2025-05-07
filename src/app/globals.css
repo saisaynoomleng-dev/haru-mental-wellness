@@ -124,6 +124,8 @@
   --color-brand-light-gray: #d4dbc0;
   --color-brand-light-blue: #b2f7ff;
   --color-brand-light-green: #708840;
+  --color-brand-brown: #553925;
+  --color-brand-orange: #ac5922;
 
   /* font families */
   --font-brand-serif: var(--font-serif);

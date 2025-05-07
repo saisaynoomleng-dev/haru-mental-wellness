@@ -3,6 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
+import clsx from 'clsx';
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -10,8 +11,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'rounded-full bg-brand-light-green text-black font-semibold px-2 cursor-pointer group relative overflow-hidden',
-        link: 'text-primary underline-offset-4 hover:underline',
+          'rounded-full bg-brand-light-green text-black font-semibold px-2 cursor-pointer group relative overflow-hidden font-bold uppercase',
+        link: 'bg-brand-orange rounded-full text-brand-white min-w-15 min-h-15 cursor-pointer group overflow-hidden relative',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -29,7 +30,7 @@ const buttonVariants = cva(
 
 function Button({
   className,
-  variant,
+  variant = 'default',
   size,
   asChild = false,
   children,
@@ -47,7 +48,13 @@ function Button({
       {...props}
     >
       <span className="relative z-10">{children}</span>
-      <span className="absolute h-0 w-full bottom-0  bg-brand-light-blue transition-all duration-200 group-hover:h-full origin-bottom z-0"></span>
+      <span
+        className={clsx(
+          'absolute h-0 w-full bottom-0  transition-all duration-200 group-hover:h-full origin-bottom z-0',
+          variant === 'default' && 'bg-brand-light-blue',
+          variant === 'link' && 'bg-brand-light-green',
+        )}
+      ></span>
     </Comp>
   );
 }

@@ -1,7 +1,9 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant hover (&:hover);
 
 @theme inline {
   --color-background: var(--background);
@@ -112,11 +114,43 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@theme {
+  /* colors */
+  --color-brand-dark-gray: #181818;
+  --color-brand-dark-blue: #21354d;
+  --color-brand-dark-green: #142e29;
+  --color-brand-cream: #f7e8cb;
+  --color-brand-white: #eef2f8;
+  --color-brand-light-gray: #d4dbc0;
+  --color-brand-light-blue: #b2f7ff;
+  --color-brand-light-green: #708840;
+
+  /* font families */
+  --font-brand-serif: var(--font-serif);
+  --font-brand-sans: var(--font-sans);
+
+  /* font sizes */
+  --text-fs-1000: 12.375rem;
+  --text-fs-900: 8.4375rem;
+  --text-fs-800: 4.8625rem;
+  --text-fs-700: 3.7925rem;
+  --text-fs-600: 2.43125rem;
+  --text-fs-500: 1.625rem;
+  --text-fs-400: 1.125rem;
+  --text-fs-300: 1rem;
+  --text-fs-200: 0.825rem;
+
+  /* screens */
+  --breakpoint-xl: 1440px;
+  --breakpoint-lg: 1000px;
+  --breakpoint-md: 760px;
+}
+
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  html {
+    @apply scroll-smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-fs-400 font-sans bg-brand-dark-green text-brand-white leading-normal tracking-normal overflow-x-hidden min-h-dvh;
   }
 }

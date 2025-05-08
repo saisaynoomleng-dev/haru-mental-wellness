@@ -3,10 +3,11 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const pathname = usePathname();
 
   const navLinks = [
@@ -19,8 +20,23 @@ const Header = () => {
     { title: 'Contact', url: '/contact' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="flex justify-between items-center py-5 px-10">
+    <header
+      className={clsx(
+        'flex justify-between items-center py-5 px-10 w-full fixed top-0 left-0 z-10 h-12 md:h-20 transition-colors duration-200',
+        isScrolled ? 'bg-brand-light-green' : 'bg-transparent',
+      )}
+    >
       <Link href="/" className="font-serif text-fs-500">
         HARU
       </Link>
@@ -30,7 +46,7 @@ const Header = () => {
         aria-controls="#main-menu"
         aria-label="navigation menu button"
         className={clsx(
-          "md:hidden block w-8 h-[2px] rounded-lg bg-brand-white cursor-pointer relative z-50 after:absolute after:content-[''] transition-all duration-100 ease-in",
+          "md:hidden block w-8 h-[2px] rounded-lg bg-brand-white cursor-pointer relative z-50 after:z-50 after:absolute after:content-[''] transition-all duration-100 ease-in ",
           navOpen
             ? 'rotate-45 after:rotate-90 after:w-8 after:top-0 after:right-0 after:h-[2px] after:bg-brand-white after:rounded-lg'
             : 'after:w-5 after:h-[2px] after:bg-brand-white after:right-0 after:top-2 after:rounded-lg',
@@ -42,7 +58,7 @@ const Header = () => {
       <nav
         className={clsx(
           'flex flex-col items-center justify-center md:flex-row gap-5',
-          'max-md:fixed max-md:inset-0 max-md:bg-brand-dark-blue max-md:z-20 max-md:transition-transform duration-300 ease-in-out',
+          'max-md:fixed max-md:h-screen max-md:inset-0 max-md:bg-brand-dark-blue max-md:z-20 max-md:transition-transform duration-300 ease-in-out ',
           navOpen ? 'max-md:translate-y-0' : 'max-md:-translate-y-full',
         )}
       >

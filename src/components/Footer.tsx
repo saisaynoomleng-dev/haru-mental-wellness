@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import Title from './Title';
 import {
-  FaEnvelope,
   FaFacebook,
   FaGithub,
   FaInstagram,
@@ -10,7 +8,6 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from 'react-icons/fa';
-import Image from 'next/image';
 
 const Footer = () => {
   const navLinks = [

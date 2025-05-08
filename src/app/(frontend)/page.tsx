@@ -1,12 +1,12 @@
 import Banner from '@/components/Banner';
 import Bounded from '@/components/Bounded';
 import Cta from '@/components/Cta';
+import Newsletter from '@/components/Newsletter';
 import { SpinnerBlock } from '@/components/Spinner';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import Image from 'next/image';
-import { FaLongArrowAltRight, FaQuoteLeft } from 'react-icons/fa';
+import { FaQuoteLeft } from 'react-icons/fa';
 
 export default function Home() {
   return (
@@ -210,22 +210,7 @@ export default function Home() {
           <span className="text-brand-orange font-bold"> Newsletter</span>
         </p>
 
-        <form
-          action=""
-          className="flex flex-col md:flex-row gap-5 justify-center items-center text-left"
-        >
-          <div className="space-y-2">
-            <label htmlFor="name">Full Name</label>
-            <Input type="text" name="name" id="name" placeholder="Full Name" />
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="email">Email</label>
-            <Input type="email" name="email" id="email" placeholder="Email" />
-          </div>
-          <Button type="submit" className="h-12">
-            <FaLongArrowAltRight />
-          </Button>
-        </form>
+        <Newsletter />
       </div>
     </Bounded>
   );

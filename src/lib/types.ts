@@ -19,3 +19,10 @@ export type CtaProps = {
   href: string;
   className?: string;
 };
+
+// form state
+export type PrevFormStateProps = {
+  status: string;
+  message: string;
+  field?: string;
+};

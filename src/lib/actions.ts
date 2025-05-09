@@ -1,9 +1,10 @@
 'use server';
 
 import { client } from '@/sanity/lib/client';
+import { PrevFormStateProps } from './types';
 
 export const submitNewsletter = async (
-  prevState: { status: string; message: string; field?: string },
+  prevState: PrevFormStateProps,
   formData: FormData,
 ): Promise<{ status: string; message: string; field?: string }> => {
   const name = formData.get('name')?.toString().trim() as string;
@@ -52,6 +53,70 @@ export const submitNewsletter = async (
     return {
       status: 'error',
       message: 'Something went wrong, please try again!',
+    };
+  }
+};
+
+export const submitContactForm = async (
+  prevState: PrevFormStateProps,
+  formData: FormData,
+): Promise<{ status: string; message: string; field?: string }> => {
+  const name = formData.get('name')?.toString()?.trim() || '';
+  const email = formData.get('email')?.toString()?.trim() || '';
+  const comment = formData.get('comment')?.toString() || '';
+  const reg_email = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+
+  if (!name) {
+    return {
+      status: 'error',
+      message: 'Name field cannot be empty',
+      field: 'name',
+    };
+  }
+
+  if (!email) {
+    return {
+      status: 'error',
+      message: 'Email field cannot be empty',
+      field: 'email',
+    };
+  }
+
+  if (!comment) {
+    return {
+      status: 'error',
+      message: 'Comment field must have at least 10 characters',
+      field: 'comment',
+    };
+  }
+
+  if (!reg_email.test(email)) {
+    return {
+      status: 'error',
+      message: 'Must be a valid email address',
+      field: 'email',
+    };
+  }
+
+  try {
+    await client.create({
+      _type: 'contact',
+      name,
+      email,
+      comment,
+      _createdAt: new Date().toISOString,
+    });
+
+    return {
+      status: 'success',
+      message: `Thank you for contacting us! We'll be in touch shorly!`,
+    };
+  } catch (err) {
+    console.error(err);
+
+    return {
+      status: 'error',
+      message: 'Something went wrong. Please Try again later!',
     };
   }
 };

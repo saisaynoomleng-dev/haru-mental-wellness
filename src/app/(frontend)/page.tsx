@@ -1,6 +1,7 @@
 import Banner from '@/components/Banner';
 import Bounded from '@/components/Bounded';
 import Cta from '@/components/Cta';
+import FAQ from '@/components/FAQ';
 import Newsletter from '@/components/Newsletter';
 import { SpinnerBlock } from '@/components/Spinner';
 import Title from '@/components/Title';
@@ -20,7 +21,7 @@ export default function Home() {
             width={500}
             height={500}
             priority
-            className="-rotate-4 rounded-sm"
+            className="-rotate-4 rounded-full"
           />
         </div>
 
@@ -57,14 +58,14 @@ export default function Home() {
           <Button className="md:w-full md:h-full">View more</Button>
         </div>
 
-        <div className="col-start-2 place-self-end md:col-start-3 md:col-span-2">
+        <div className="col-start-2 place-self-end md:col-start-3 md:col-span-2 max-w-[300px] max-h-[300px] triangle-image">
           <Image
             src="/hero-2.jpg"
             alt=""
             width={500}
             height={500}
             priority
-            className="rotate-6 rounded-sm"
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -153,10 +154,7 @@ export default function Home() {
           as="h3"
           size="sm"
         >
-          Why Mental Health{' '}
-          <span className="text-brand-light-green underline underline-offset-6 decoration-3 decoration-wavy decoration-brand-cream">
-            Matters
-          </span>
+          Why Mental Health <span className="wavy-em">Matters</span>
         </Title>
 
         <p className="col-start-1 col-span-full md:col-start-3 md:col-span-2 first-line:text-brand-light-green first-line:font-semibold text-justify">
@@ -196,14 +194,13 @@ export default function Home() {
         </div>
       </div>
 
+      {/* faq */}
+      <FAQ />
+
       {/* newsletter */}
       <div className="flex  gap-5 md:gap-10 flex-col item-center justify-center text-center py-10">
         <Title as="h2" size="md" className="uppercase">
-          Want to know How we help{' '}
-          <span className="font-serif underline underline-offset-6 decoration-wavy decoration-2 decoration-brand-cream text-brand-light-green">
-            people
-          </span>
-          ?
+          Want to know How we help <span className="wavy-em">people</span>?
         </Title>
         <p>
           Join our{' '}

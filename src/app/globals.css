@@ -156,3 +156,15 @@
     @apply text-fs-400 font-sans bg-brand-dark-green text-brand-white leading-normal tracking-normal overflow-x-hidden min-h-dvh;
   }
 }
+
+@utility wavy-em {
+  @apply font-serif underline underline-offset-6 decoration-wavy decoration-2 decoration-brand-cream text-brand-light-green;
+}
+
+.triangle-image {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  overflow: hidden;
+  position: relative;
+  border-radius: 50px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+}

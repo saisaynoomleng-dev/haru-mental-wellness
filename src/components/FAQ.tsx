@@ -16,7 +16,7 @@ const FAQ = async ({ className }: { className?: string }) => {
   return (
     <div
       className={clsx(
-        'flex flex-col md:flex-row gap-5 md:justify-around bg-brand-cream/80 p-3 text-brand-dark-gray',
+        'flex flex-col md:flex-row gap-5 md:justify-around bg-brand-cream/80 p-3 text-brand-dark-gray py-12 md:py-16',
         className,
       )}
     >

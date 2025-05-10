@@ -1,5 +1,5 @@
 import { FaBriefcaseMedical } from 'react-icons/fa';
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
 
 export const treatment = defineType({
   name: 'treatment',

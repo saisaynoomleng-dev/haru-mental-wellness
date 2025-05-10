@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 
 const Banner = ({ className }: { className?: string }) => {
   return (
@@ -8,12 +9,48 @@ const Banner = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      <img src="/brands/brand-1.svg" />
-      <img src="/brands/brand-2.svg" />
-      <img src="/brands/brand-3.svg" />
-      <img src="/brands/brand-4.svg" />
-      <img src="/brands/brand-5.svg" />
-      <img src="/brands/brand-6.svg" />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-1.svg"
+      />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-2.svg"
+      />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-3.svg"
+      />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-4.svg"
+      />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-5.svg"
+      />
+      <Image
+        alt=""
+        width={100}
+        height={100}
+        priority
+        src="/brands/brand-6.svg"
+      />
     </div>
   );
 };

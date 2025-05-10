@@ -2,7 +2,7 @@ import Banner from '@/components/Banner';
 import Bounded from '@/components/Bounded';
 import Cta from '@/components/Cta';
 import FAQ from '@/components/FAQ';
-import Newsletter from '@/components/Newsletter';
+import NewsSubscription from '@/components/NewsSubscription';
 import { SpinnerBlock } from '@/components/Spinner';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
@@ -194,21 +194,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* faq */}
-      <FAQ />
-
       {/* newsletter */}
-      <div className="flex  gap-5 md:gap-10 flex-col item-center justify-center text-center py-10">
-        <Title as="h2" size="md" className="uppercase">
-          Want to know How we help <span className="wavy-em">people</span>?
-        </Title>
-        <p>
-          Join our{' '}
-          <span className="text-brand-orange font-bold"> Newsletter</span>
-        </p>
+      <NewsSubscription />
 
-        <Newsletter />
-      </div>
+      <FAQ />
     </Bounded>
   );
 }

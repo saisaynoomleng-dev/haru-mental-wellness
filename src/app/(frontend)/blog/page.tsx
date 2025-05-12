@@ -1,7 +1,7 @@
-import React from 'react';
+import Bounded from '@/components/Bounded';
 
-const BlogPage = () => {
-  return <div>BlogPage</div>;
+const BlogPage = async () => {
+  return <Bounded>BlogPage</Bounded>;
 };
 
 export default BlogPage;

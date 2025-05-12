@@ -11,9 +11,9 @@ import { FaQuoteLeft } from 'react-icons/fa';
 
 export default function Home() {
   return (
-    <Bounded variant="without-padding">
+    <Bounded>
       {/* Hero */}
-      <div className="grid grid-cols-2 row-auto md:grid-cols-4 gap-2 text-center md:gap-0 px-10 md:px-14">
+      <div className="grid grid-cols-2 row-auto md:grid-cols-4 gap-2 text-center md:gap-0 add-padding">
         <div className="col-start-1 md:place-self-end">
           <Image
             src="/hero-1.jpg"
@@ -82,7 +82,7 @@ export default function Home() {
       </div>
 
       {/* About Mental Health */}
-      <div className="grid grid-cols-2 gap-5 md:gap-10 row-auto md:grid-cols-6 px-10 md:px-14">
+      <div className="grid grid-cols-2 gap-5 md:gap-10 row-auto md:grid-cols-6 add-padding">
         <Title
           as="h1"
           size="md"
@@ -169,7 +169,7 @@ export default function Home() {
       </div>
 
       {/* Treatment */}
-      <div className="flex flex-col md:flex-row gap-y-5 bg-brand-light-gray px-10 md:px-14 py-10 text-brand-dark-gray">
+      <div className="flex flex-col md:flex-row gap-y-5 bg-brand-light-gray px-10 add-padding text-brand-dark-gray">
         <Title as="h3" size="sm" className="uppercase md:flex-1/2">
           How Can we help you today?
         </Title>

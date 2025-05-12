@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const AboutPage = () => {
   return (
-    <Bounded variant="without-padding">
+    <Bounded>
       {/* hero */}
       <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-5 py-5 px-10 md:px-14">
         <Title

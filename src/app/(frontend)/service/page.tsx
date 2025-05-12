@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 const ServicePage = () => {
   return (
-    <Bounded variant="without-padding">
+    <Bounded>
       {/* hero */}
       <div className="flex gap-5 md:gap-10 justify-center items-center px-10 md:px-14">
         <div className="flex-1">

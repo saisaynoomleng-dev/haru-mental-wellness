@@ -5,14 +5,11 @@ const Bounded = ({
   as: Comp = 'section',
   children,
   className,
-  variant = 'with-padding',
 }: BoundedProps) => {
   return (
     <Comp
       className={clsx(
         'pt-12 md:pt-20 relative z-0 space-y-10 md:space-y-20 mt-5 py-10',
-        variant === 'with-padding' && 'px-10 md:px-14',
-        variant === 'without-padding' && 'px-0',
         className,
       )}
     >

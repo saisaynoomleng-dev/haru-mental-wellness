@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { sans, serif } from '@/lib/fonts';
+import { SanityLive } from '@/sanity/lib/live';
 
 export const metadata: Metadata = {
   title: 'Haru Mental Wellness',
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${serif.variable} ${sans.variable}`}>{children}</body>
+      <body className={`${serif.variable} ${sans.variable}`}>
+        {children} <SanityLive />
+      </body>
     </html>
   );
 }

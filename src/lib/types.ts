@@ -11,7 +11,6 @@ export type BoundedProps = {
   as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
-  variant: 'with-padding' | 'without-padding';
 };
 
 // Cta

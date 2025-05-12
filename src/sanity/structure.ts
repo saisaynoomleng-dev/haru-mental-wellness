@@ -1,5 +1,5 @@
 import { BsNewspaper } from 'react-icons/bs';
-import { FaQuestion } from 'react-icons/fa';
+import { FaHandHoldingMedical, FaQuestion } from 'react-icons/fa';
 import { MdOutlineRateReview } from 'react-icons/md';
 import { RiContactsLine } from 'react-icons/ri';
 
@@ -20,4 +20,7 @@ export const structure: StructureResolver = (S) =>
         .title('Reviews')
         .icon(MdOutlineRateReview),
       S.documentTypeListItem('FAQ').title('FAQs').icon(FaQuestion),
+      S.documentTypeListItem('treatment')
+        .title('Treatments')
+        .icon(FaHandHoldingMedical),
     ]);

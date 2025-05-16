@@ -3,8 +3,15 @@ import Title from '@/components/Title';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { TREATMENTS_QUERY } from '@/sanity/lib/queries';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Treatment',
+  description:
+    'Haru Mental Wellness provides main 6 different types mental treatments',
+};
 
 const TreatmentPage = async () => {
   const { data: treatments } = await sanityFetch({ query: TREATMENTS_QUERY });

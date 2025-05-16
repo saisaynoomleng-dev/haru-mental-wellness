@@ -26,8 +26,10 @@ const TreatmentDetail = async ({
 
   return (
     <Bounded>
+      <Link className="add-padding block" href="/treatment">
+        &larr; Back to All Treatments
+      </Link>
       <div className="add-padding">
-        <Link href="/treatment">&larr; Back to All Treatments</Link>
         <Title as="h1" size="sm" className="capitalize text-brand-white/50">
           {treatment?.title}
         </Title>

@@ -15,8 +15,10 @@ const Header = () => {
     { title: 'About', url: '/about' },
     { title: 'Services', url: '/service' },
     { title: 'Treatments', url: '/treatment' },
+    { title: 'Therapist', url: '/therapist' },
     { title: 'Team', url: '/team' },
     { title: 'Blog', url: '/blog' },
+    { title: 'Reviews', url: '/review' },
     { title: 'Contact', url: '/contact' },
   ];
 
@@ -71,6 +73,7 @@ const Header = () => {
               'font-semibold',
               pathname === link.url &&
                 'text-brand-orange underline underline-offset-4 decoration-wavy',
+              isScrolled && pathname === link.url && 'text-brand-dark-gray',
             )}
           >
             {link.title}

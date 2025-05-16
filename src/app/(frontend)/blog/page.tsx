@@ -1,9 +1,10 @@
 import BlogCard from '@/components/BlogCard';
+import BlogFilter from '@/components/BlogFilter';
 import Bounded from '@/components/Bounded';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
 import { sanityFetch } from '@/sanity/lib/live';
-import { BLOGS_QUERY } from '@/sanity/lib/queries';
+import { LATEST_BLOGS_QUERY, OLDEST_BLOGS_QUERY } from '@/sanity/lib/queries';
 import clsx from 'clsx';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -25,11 +26,15 @@ const BlogPage = async ({
 }) => {
   const { page, filter, tags } = await searchParams;
   const params = {
-    filter,
-    tags,
+    filter: filter || null,
+    tags: tags || null,
   };
 
-  const { data: allBlogs } = await sanityFetch({ query: BLOGS_QUERY });
+  const oldestQuery = OLDEST_BLOGS_QUERY;
+  const latestQuery = LATEST_BLOGS_QUERY;
+  const blogQuery = filter === 'oldest' ? oldestQuery : latestQuery;
+
+  const { data: allBlogs } = await sanityFetch({ query: blogQuery, params });
 
   const currentPage = parseInt(page || '1', 10);
   const blogsPerPage = 6;
@@ -49,9 +54,7 @@ const BlogPage = async ({
 
       <div className="grid md:grid-cols-[auto_1fr] gap-5 md:gap-10 bg-brand-cream text-brand-dark-gray">
         {/* filter */}
-        <div className="add-padding px-2">
-          <p className="font-semibold">Filter</p>
-        </div>
+        <BlogFilter filter={filter} tags={tags} />
 
         {/* blogs */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 py-2 md:py-5 px-2 md:px-4">

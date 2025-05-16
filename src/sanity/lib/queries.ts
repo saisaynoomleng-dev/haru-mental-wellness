@@ -26,8 +26,9 @@ export const TREATMENT_QUERY = defineQuery(`*[_type == 'treatment'
    desc
   }`);
 
-export const BLOGS_QUERY = defineQuery(`*[_type == 'blog'
-  && defined(slug.current)]{
+export const LATEST_BLOGS_QUERY = defineQuery(`*[_type == 'blog'
+  && defined(slug.current)
+  && (!defined($tags) || category == $tags)]{
    title,
    author->{
      name
@@ -40,6 +41,22 @@ export const BLOGS_QUERY = defineQuery(`*[_type == 'blog'
    slug,
    publishedAt
   } | order(publishedAt desc)`);
+
+export const OLDEST_BLOGS_QUERY = defineQuery(`*[_type == 'blog'
+  && defined(slug.current)
+  && (!defined($tags) || category == $tags)]{
+   title,
+   author->{
+     name
+   },
+   mainImage{
+     asset->{url},
+     alt
+   },
+   category,
+   slug,
+   publishedAt
+  } | order(publishedAt)`);
 
 export const BLOG_QUERY = defineQuery(`*[_type == 'blog'
   && slug.current == $slug][0]{

@@ -468,9 +468,26 @@ export type TREATMENT_QUERYResult = {
       }
   > | null;
 } | null;
-// Variable: BLOGS_QUERY
-// Query: *[_type == 'blog'  && defined(slug.current)]{   title,   author->{     name   },   mainImage{     asset->{url},     alt   },   category,   slug,   publishedAt  } | order(publishedAt desc)
-export type BLOGS_QUERYResult = Array<{
+// Variable: LATEST_BLOGS_QUERY
+// Query: *[_type == 'blog'  && defined(slug.current)  && (!defined($tags) || category == $tags)]{   title,   author->{     name   },   mainImage{     asset->{url},     alt   },   category,   slug,   publishedAt  } | order(publishedAt desc)
+export type LATEST_BLOGS_QUERYResult = Array<{
+  title: string | null;
+  author: {
+    name: string | null;
+  } | null;
+  mainImage: {
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  category: string | null;
+  slug: Slug | null;
+  publishedAt: string | null;
+}>;
+// Variable: OLDEST_BLOGS_QUERY
+// Query: *[_type == 'blog'  && defined(slug.current)  && (!defined($tags) || category == $tags)]{   title,   author->{     name   },   mainImage{     asset->{url},     alt   },   category,   slug,   publishedAt  } | order(publishedAt)
+export type OLDEST_BLOGS_QUERYResult = Array<{
   title: string | null;
   author: {
     name: string | null;
@@ -584,7 +601,8 @@ declare module '@sanity/client' {
     "*[_type == 'FAQ'\n    && defined(slug.current)][0]{\n     faqs[]{\n       question,\n       answer\n     }\n    }": FAQS_QUERYResult;
     "*[_type == 'treatment'\n  && defined(slug.current)][0..4]{\n   title,\n   slug,\n   mainImage{\n     asset->{url}\n   }\n  } | order(title)": TREATMENTS_QUERYResult;
     "*[_type == 'treatment'\n  && slug.current == $slug][0]{\n   title,\n   mainImage{\n     asset->{url}\n   },\n   desc\n  }": TREATMENT_QUERYResult;
-    "*[_type == 'blog'\n  && defined(slug.current)]{\n   title,\n   author->{\n     name\n   },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   category,\n   slug,\n   publishedAt\n  } | order(publishedAt desc)": BLOGS_QUERYResult;
+    "*[_type == 'blog'\n  && defined(slug.current)\n  && (!defined($tags) || category == $tags)]{\n   title,\n   author->{\n     name\n   },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   category,\n   slug,\n   publishedAt\n  } | order(publishedAt desc)": LATEST_BLOGS_QUERYResult;
+    "*[_type == 'blog'\n  && defined(slug.current)\n  && (!defined($tags) || category == $tags)]{\n   title,\n   author->{\n     name\n   },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   category,\n   slug,\n   publishedAt\n  } | order(publishedAt)": OLDEST_BLOGS_QUERYResult;
     "*[_type == 'blog'\n  && slug.current == $slug][0]{\n   title,\n   author->{\n     name,\n     slug,\n     mainImage{\n      asset->{url},\n      alt\n     }\n   },\n   category,\n   slug,\n   publishedAt,\n   subtitle,\n   desc,\n  }": BLOG_QUERYResult;
     "*[_type == 'author'\n  && defined(slug.current)]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   }\n  } | order(name)": AUTHORS_QUERYResult;
     "*[_type == 'author'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   book[]{\n    title,\n    url,\n    mainImage{\n      asset->{url},\n      alt\n    }\n  },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   links[]{\n    title,\n    url\n   }\n  } | order(name)": AUTHOR_QUERYResult;

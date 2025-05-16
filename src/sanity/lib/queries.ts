@@ -25,3 +25,68 @@ export const TREATMENT_QUERY = defineQuery(`*[_type == 'treatment'
    },
    desc
   }`);
+
+export const BLOGS_QUERY = defineQuery(`*[_type == 'blog'
+  && defined(slug.current)]{
+   title,
+   author->{
+     name
+   },
+   mainImage{
+     asset->{url},
+     alt
+   },
+   category,
+   slug,
+   publishedAt
+  } | order(publishedAt desc)`);
+
+export const BLOG_QUERY = defineQuery(`*[_type == 'blog'
+  && slug.current == $slug][0]{
+   title,
+   author->{
+     name,
+     slug,
+     mainImage{
+      asset->{url},
+      alt
+     }
+   },
+   category,
+   slug,
+   publishedAt,
+   subtitle,
+   desc,
+  }`);
+
+export const AUTHORS_QUERY = defineQuery(`*[_type == 'author'
+  && defined(slug.current)]{
+   name,
+   slug,
+   mainImage{
+     asset->{url},
+     alt
+   }
+  } | order(name)`);
+
+export const AUTHOR_QUERY = defineQuery(`*[_type == 'author'
+  && slug.current == $slug][0]{
+   name,
+   slug,
+   book[]{
+    title,
+    url,
+    mainImage{
+      asset->{url},
+      alt
+    }
+  },
+   mainImage{
+     asset->{url},
+     alt
+   },
+   links[]{
+    title,
+    url
+   }
+  } | order(name)`);

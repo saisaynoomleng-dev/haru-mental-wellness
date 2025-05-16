@@ -39,7 +39,9 @@ export const MyPortableTextComponent: PortableTextComponents = {
     strong: ({ children }) => (
       <strong className="font-bold text-brand-white">{children}</strong>
     ),
-    em: ({ children }) => <em className="italic text-gray-700">{children}</em>,
+    em: ({ children }) => (
+      <em className="italic text-brand-light-green">{children}</em>
+    ),
     underline: ({ children }) => <span className="underline">{children}</span>,
   },
   block: {
@@ -62,6 +64,26 @@ export const MyPortableTextComponent: PortableTextComponents = {
       <p className="text-base leading-relaxed text-brand-white mb-4">
         {children}
       </p>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc pl-6 space-y-2">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal pl-6 space-y-2">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="text-brand-white/80 text-base leading-relaxed">
+        {children}
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className="text-brand-white/80 text-base leading-relaxed">
+        {children}
+      </li>
     ),
   },
 };

@@ -1,7 +1,8 @@
 import { BsNewspaper } from 'react-icons/bs';
-import { FaHandHoldingMedical, FaQuestion } from 'react-icons/fa';
+import { FaHandHoldingMedical, FaPenFancy, FaQuestion } from 'react-icons/fa';
 import { MdOutlineRateReview } from 'react-icons/md';
 import { RiContactsLine } from 'react-icons/ri';
+import { TbLogs } from 'react-icons/tb';
 
 import type { StructureResolver } from 'sanity/structure';
 
@@ -23,4 +24,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('treatment')
         .title('Treatments')
         .icon(FaHandHoldingMedical),
+      S.documentTypeListItem('blog').title('Blogs').icon(TbLogs),
+      S.documentTypeListItem('author').title('Authors').icon(FaPenFancy),
     ]);

@@ -4,7 +4,10 @@ import { sans, serif } from '@/lib/fonts';
 import { SanityLive } from '@/sanity/lib/live';
 
 export const metadata: Metadata = {
-  title: 'Haru Mental Wellness',
+  title: {
+    template: '%s | Haru Mental Wellness',
+    default: 'Haru Mental Wellness',
+  },
   description:
     'Haru Mental Wellness is a personal medical web app that provides different treatments online regarding of mental health.',
 };

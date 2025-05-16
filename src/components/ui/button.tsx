@@ -13,6 +13,7 @@ const buttonVariants = cva(
         default:
           'rounded-full bg-brand-light-green text-black font-semibold px-2 cursor-pointer group relative overflow-hidden font-bold uppercase',
         link: 'bg-brand-orange rounded-full text-brand-white min-w-15 min-h-15 cursor-pointer group overflow-hidden relative',
+        pagination: '',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

@@ -25,3 +25,9 @@ export type PrevFormStateProps = {
   message: string;
   field?: string;
 };
+
+// blog card
+export type BlogCardProps = {
+  href: string | '';
+  className?: string;
+};

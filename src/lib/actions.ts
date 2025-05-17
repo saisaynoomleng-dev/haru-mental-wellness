@@ -120,3 +120,26 @@ export const submitContactForm = async (
     };
   }
 };
+
+// export const submitReview = async (
+//   prevState: PrevFormStateProps,
+//   formData: FormData,
+// ): Promise<{ status: string; message: string; field?: string }> => {
+//   const username = formData.get('username')?.toString().trim() || '';
+//   const role = formData.get('role')?.toString().trim() || '';
+//   const rating = formData.get('rating') || 0;
+//   const desc = formData.get('desc');
+
+//   await client.create({
+//     _type: 'review',
+//     username,
+//     role,
+//     rating,
+//     desc,
+//   });
+
+//   return {
+//     status: 'ok',
+//     message: 'asdf',
+//   };
+// };

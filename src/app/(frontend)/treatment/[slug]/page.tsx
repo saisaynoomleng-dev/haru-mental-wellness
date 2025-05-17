@@ -1,11 +1,9 @@
 import Bounded from '@/components/Bounded';
 import Title from '@/components/Title';
-import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { TREATMENT_QUERY } from '@/sanity/lib/queries';
 import { MyPortableTextComponent } from '@/sanity/MyPortableTextComponent';
 import { PortableText } from 'next-sanity';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';

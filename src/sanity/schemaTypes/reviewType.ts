@@ -17,8 +17,16 @@ export const review = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      options: {
+        source: 'username',
+      },
       validation: (rule) => rule.required(),
       hidden: ({ document }) => !document?.username,
+    }),
+    defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
     }),
     defineField({
       name: 'rating',
@@ -33,4 +41,10 @@ export const review = defineType({
       validation: (rule) => rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: 'username',
+      subtitle: 'role',
+    },
+  },
 });

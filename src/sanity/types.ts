@@ -272,6 +272,34 @@ export type BlockContent = Array<
     }
 >;
 
+export type FAQ = {
+  _id: string;
+  _type: 'FAQ';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  faqs?: Array<{
+    question?: string;
+    answer?: string;
+    _key: string;
+  }>;
+};
+
+export type Review = {
+  _id: string;
+  _type: 'review';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  username?: string;
+  slug?: Slug;
+  role?: string;
+  rating?: number;
+  desc?: BlockContent;
+};
+
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop';
   top?: number;
@@ -329,33 +357,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type FAQ = {
-  _id: string;
-  _type: 'FAQ';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  faqs?: Array<{
-    question?: string;
-    answer?: string;
-    _key: string;
-  }>;
-};
-
-export type Review = {
-  _id: string;
-  _type: 'review';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  username?: string;
-  slug?: Slug;
-  rating?: number;
-  desc?: string;
-};
-
 export type Slug = {
   _type: 'slug';
   current?: string;
@@ -393,13 +394,13 @@ export type AllSanitySchemaTypes =
   | Author
   | Treatment
   | BlockContent
+  | FAQ
+  | Review
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | FAQ
-  | Review
   | Slug
   | Contact
   | Newsletter;
@@ -594,6 +595,15 @@ export type AUTHOR_QUERYResult = {
   }> | null;
   bio: string | null;
 } | null;
+// Variable: REVIEWS_QUERY
+// Query: *[_type == 'review'  && defined(slug.current)]{   username,   slug,   role,   rating,   desc  }
+export type REVIEWS_QUERYResult = Array<{
+  username: string | null;
+  slug: Slug | null;
+  role: string | null;
+  rating: number | null;
+  desc: BlockContent | null;
+}>;
 
 // Query TypeMap
 import '@sanity/client';
@@ -607,5 +617,6 @@ declare module '@sanity/client' {
     "*[_type == 'blog'\n  && slug.current == $slug][0]{\n   title,\n   author->{\n     name,\n     slug,\n     mainImage{\n      asset->{url},\n      alt\n     }\n   },\n   category,\n   slug,\n   publishedAt,\n   subtitle,\n   desc,\n  }": BLOG_QUERYResult;
     "*[_type == 'author'\n  && defined(slug.current)]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   }\n  } | order(name)": AUTHORS_QUERYResult;
     "*[_type == 'author'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   book[]{\n    title,\n    url,\n    mainImage{\n      asset->{url},\n      alt\n    }\n  },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   links[]{\n    title,\n    url\n   },\n   bio\n  }": AUTHOR_QUERYResult;
+    "*[_type == 'review'\n  && defined(slug.current)]{\n   username,\n   slug,\n   role,\n   rating,\n   desc\n  }": REVIEWS_QUERYResult;
   }
 }

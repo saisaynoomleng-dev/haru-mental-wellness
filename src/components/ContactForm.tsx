@@ -29,13 +29,7 @@ const ContactForm = () => {
         <label htmlFor="name" className={LABEL_CLASS}>
           Full Name
         </label>
-        <Input
-          id="name"
-          type="text"
-          placeholder="eg. John Doe"
-          name="name"
-          autoComplete="off"
-        />
+        <Input id="name" type="text" name="name" autoComplete="name" />
         {state?.status === 'error' && state.field === 'name' && (
           <p className="text-fs-200 text-red-500 italic">{state.message}</p>
         )}
@@ -45,13 +39,7 @@ const ContactForm = () => {
         <label htmlFor="email" className={LABEL_CLASS}>
           Email Address
         </label>
-        <Input
-          id="email"
-          type="text"
-          placeholder="eg. johndoe@examplemail.com"
-          name="email"
-          autoComplete="off"
-        />
+        <Input id="email" type="text" name="email" autoComplete="username" />
         {state?.status === 'error' && state.field === 'email' && (
           <p className="text-fs-200 text-red-500 italic">{state.message}</p>
         )}
@@ -61,11 +49,7 @@ const ContactForm = () => {
         <label htmlFor="comment" className={LABEL_CLASS}>
           Comments
         </label>
-        <Textarea
-          name="comment"
-          id="comment"
-          placeholder="Summary of your intents"
-        />
+        <Textarea name="comment" id="comment" className="h-30" />
         {state?.status === 'error' && state.field === 'comment' && (
           <p className="text-fs-200 text-red-500 italic">{state.message}</p>
         )}

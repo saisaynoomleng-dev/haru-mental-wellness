@@ -49,7 +49,7 @@ const AuthorDetailPage = async ({
             <p className="font-semibold">Links</p>
             <ul className="list-disc ml-5">
               {author.links?.map((link) => (
-                <li key={link.title}>
+                <li key={link.title} className="hover:text-brand-light-green">
                   <Link href={`${link.url}`}>{link.title}</Link>
                 </li>
               ))}

@@ -108,3 +108,12 @@ export const AUTHOR_QUERY = defineQuery(`*[_type == 'author'
    },
    bio
   }`);
+
+export const REVIEWS_QUERY = defineQuery(`*[_type == 'review'
+  && defined(slug.current)]{
+   username,
+   slug,
+   role,
+   rating,
+   desc
+  }`);

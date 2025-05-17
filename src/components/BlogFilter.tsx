@@ -1,3 +1,5 @@
+'use client';
+
 import Form from 'next/form';
 import {
   Select,
@@ -8,8 +10,26 @@ import {
 } from './ui/select';
 import { Button } from './ui/button';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const BlogFilter = ({ filter, tags }: { filter?: string; tags?: string }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleFilterChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (value) {
+      params.set('filter', value);
+    } else {
+      params.delete('filter');
+    }
+
+    params.delete('page');
+
+    router.push(`/blog?${params.toString()}`);
+  };
+
   const tagsList = [
     { title: 'Health', value: 'health' },
     { title: 'Trauma', value: 'trauma' },
@@ -30,22 +50,27 @@ const BlogFilter = ({ filter, tags }: { filter?: string; tags?: string }) => {
       <p className="font-semibold">Filters</p>
 
       <Form action="" scroll={false} className="flex flex-col gap-3">
-        <Select name="filter" defaultValue="latest">
+        <Select
+          name="filter"
+          value={filter || 'latest'}
+          onValueChange={handleFilterChange}
+        >
           <SelectTrigger className="min-w-full border-brand-black">
             <SelectValue placeholder="Filter" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="latest">Latest</SelectItem>
-            <SelectItem value="oldest">Oldest</SelectItem>
+            <SelectItem value="latest">Latest First</SelectItem>
+            <SelectItem value="oldest">Oldest First</SelectItem>
           </SelectContent>
         </Select>
 
         <div className="space-y-3 md:space-y-5">
           <p className="font-semibold">Popular Tags</p>
-          <div className="flex gap-3 flex-wrap md:flex-col">
+          <div className="flex gap-2 flex-wrap md:flex-col">
             {tagsList.map((list) => (
               <Link
                 key={list.value}
+                scroll={false}
                 href={{
                   pathname: '/blog',
                   query: {
@@ -53,7 +78,7 @@ const BlogFilter = ({ filter, tags }: { filter?: string; tags?: string }) => {
                     tags: list.value,
                   },
                 }}
-                className="block bg-brand-dark-gray rounded-lg text-brand-white px-2 cursor-pointer hover:text-brand-cream"
+                className="block bg-brand-dark-green rounded-lg text-brand-white px-2 cursor-pointer hover:text-brand-cream"
               >
                 {list.title}
               </Link>
@@ -61,12 +86,6 @@ const BlogFilter = ({ filter, tags }: { filter?: string; tags?: string }) => {
           </div>
         </div>
 
-        <Button
-          type="submit"
-          className="text-brand-white hover:text-brand-dark-gray"
-        >
-          Apply
-        </Button>
         {(filter || tags) && (
           <Button
             type="reset"

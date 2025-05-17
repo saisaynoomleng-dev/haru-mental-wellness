@@ -105,5 +105,6 @@ export const AUTHOR_QUERY = defineQuery(`*[_type == 'author'
    links[]{
     title,
     url
-   }
-  } | order(name)`);
+   },
+   bio
+  }`);

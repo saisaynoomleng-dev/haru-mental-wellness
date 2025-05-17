@@ -16,8 +16,8 @@ const Header = () => {
     { title: 'Services', url: '/service' },
     { title: 'Treatments', url: '/treatment' },
     { title: 'Therapist', url: '/therapist' },
-    { title: 'Team', url: '/team' },
     { title: 'Blog', url: '/blog' },
+    { title: 'Author', url: '/author' },
     { title: 'Reviews', url: '/review' },
     { title: 'Contact', url: '/contact' },
   ];

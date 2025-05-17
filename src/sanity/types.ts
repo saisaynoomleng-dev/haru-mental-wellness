@@ -568,7 +568,7 @@ export type AUTHORS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: AUTHOR_QUERY
-// Query: *[_type == 'author'  && slug.current == $slug][0]{   name,   slug,   book[]{    title,    url,    mainImage{      asset->{url},      alt    }  },   mainImage{     asset->{url},     alt   },   links[]{    title,    url   }  } | order(name)
+// Query: *[_type == 'author'  && slug.current == $slug][0]{   name,   slug,   book[]{    title,    url,    mainImage{      asset->{url},      alt    }  },   mainImage{     asset->{url},     alt   },   links[]{    title,    url   },   bio  }
 export type AUTHOR_QUERYResult = {
   name: string | null;
   slug: Slug | null;
@@ -592,6 +592,7 @@ export type AUTHOR_QUERYResult = {
     title: string | null;
     url: string | null;
   }> | null;
+  bio: string | null;
 } | null;
 
 // Query TypeMap
@@ -605,6 +606,6 @@ declare module '@sanity/client' {
     "*[_type == 'blog'\n  && defined(slug.current)\n  && (!defined($tags) || category == $tags)]{\n   title,\n   author->{\n     name\n   },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   category,\n   slug,\n   publishedAt\n  } | order(publishedAt)": OLDEST_BLOGS_QUERYResult;
     "*[_type == 'blog'\n  && slug.current == $slug][0]{\n   title,\n   author->{\n     name,\n     slug,\n     mainImage{\n      asset->{url},\n      alt\n     }\n   },\n   category,\n   slug,\n   publishedAt,\n   subtitle,\n   desc,\n  }": BLOG_QUERYResult;
     "*[_type == 'author'\n  && defined(slug.current)]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   }\n  } | order(name)": AUTHORS_QUERYResult;
-    "*[_type == 'author'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   book[]{\n    title,\n    url,\n    mainImage{\n      asset->{url},\n      alt\n    }\n  },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   links[]{\n    title,\n    url\n   }\n  } | order(name)": AUTHOR_QUERYResult;
+    "*[_type == 'author'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   book[]{\n    title,\n    url,\n    mainImage{\n      asset->{url},\n      alt\n    }\n  },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   links[]{\n    title,\n    url\n   },\n   bio\n  }": AUTHOR_QUERYResult;
   }
 }

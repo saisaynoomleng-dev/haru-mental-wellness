@@ -3,6 +3,7 @@ import Bounded from '@/components/Bounded';
 import Cta from '@/components/Cta';
 import FAQ from '@/components/FAQ';
 import NewsSubscription from '@/components/NewsSubscription';
+import ReviewForm from '@/components/ReviewForm';
 import { SpinnerBlock } from '@/components/Spinner';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
@@ -194,10 +195,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* newsletter */}
-      <NewsSubscription />
+      {/* review form */}
+      <ReviewForm />
 
       <FAQ />
+
+      {/* newsletter */}
+      <NewsSubscription />
     </Bounded>
   );
 }

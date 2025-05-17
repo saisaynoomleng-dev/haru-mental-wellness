@@ -59,7 +59,7 @@ const BlogPage = async ({
         {/* blogs */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 py-2 md:py-5 px-2 md:px-4">
           <Title as="h2" size="sm" className="uppercase col-span-full ">
-            Today's Essential <span className="font-serif">Reads</span>
+            Today&apos;s Essential <span className="font-serif">Reads</span>
           </Title>
 
           {blogs.map((blog) => (

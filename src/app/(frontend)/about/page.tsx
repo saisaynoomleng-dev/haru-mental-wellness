@@ -1,6 +1,5 @@
 import Bounded from '@/components/Bounded';
 import Cta from '@/components/Cta';
-import FAQ from '@/components/FAQ';
 import NewsSubscription from '@/components/NewsSubscription';
 import Title from '@/components/Title';
 import Image from 'next/image';

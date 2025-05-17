@@ -1,7 +1,7 @@
 import { BlogCardProps } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
-import { BLOGS_QUERYResult } from '@/sanity/types';
+import { LATEST_BLOGS_QUERYResult } from '@/sanity/types';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,12 +11,12 @@ const BlogCard = ({
   href,
   className,
   ...props
-}: BlogCardProps & NonNullable<BLOGS_QUERYResult>[number]) => {
+}: BlogCardProps & NonNullable<LATEST_BLOGS_QUERYResult>[number]) => {
   const { mainImage, title, author, category, publishedAt } = props;
   return (
     <Link
       href={href}
-      className={clsx('flex flex-col gap-y-y-3 md:gap-y-5 group')}
+      className={clsx('flex flex-col gap-y-y-3 md:gap-y-5 group', className)}
     >
       <div className="overflow-hidden">
         {mainImage?.asset?.url && (

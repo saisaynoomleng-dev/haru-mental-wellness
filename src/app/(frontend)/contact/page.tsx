@@ -6,10 +6,7 @@ import Image from 'next/image';
 
 const ContactPage = () => {
   return (
-    <Bounded
-      variant="with-padding"
-      className="grid md:grid-cols-2 gap-5 md:gap-10 py-10 md:py-16"
-    >
+    <Bounded className="grid md:grid-cols-2 gap-5 md:gap-10 py-10 md:py-16 add-padding">
       <div className="flex flex-col gap-5 md:gap-8 ">
         <Title as="h1" size="md">
           Get in <span className="font-serif uppercase">touch</span>
@@ -20,7 +17,7 @@ const ContactPage = () => {
 
       <div className="self-center">
         <Image
-          src="/contact-form.jpg"
+          src="/contact-form1.jpg"
           alt=""
           width={500}
           height={500}

@@ -2,8 +2,6 @@ import Bounded from '@/components/Bounded';
 import Title from '@/components/Title';
 import { sanityFetch } from '@/sanity/lib/live';
 import { REVIEWS_QUERY } from '@/sanity/lib/queries';
-import { MyPortableTextComponent } from '@/sanity/MyPortableTextComponent';
-import { PortableText } from 'next-sanity';
 import { notFound } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
 
@@ -37,7 +35,7 @@ const ReviewPage = async () => {
             key={review?.slug?.current}
             className="bg-brand-light-blue/20 flex flex-col gap-x-2 gap-y-3 p-3 h-fit rounded-sm break-inside-avoid"
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               <p className="font-semibold">{review.username}</p>
               <p className="text-fs-200">{review.role}</p>
               {review.rating && (
@@ -51,13 +49,8 @@ const ReviewPage = async () => {
                   ))}
                 </p>
               )}
+              <p className="text-fs-300">{review.desc}</p>
             </div>
-
-            {review.desc ? (
-              <div className="prose prose-sm">
-                <PortableText value={review.desc} />
-              </div>
-            ) : null}
           </div>
         ))}
       </div>

@@ -5,10 +5,10 @@ import Title from './Title';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import StarRating from './StarRating';
-// import { submitReview } from '@/lib/actions';
-import { useActionState, useState } from 'react';
-import MDEditor from '@uiw/react-md-editor';
+import { submitReview } from '@/lib/actions';
+import { useActionState } from 'react';
 import { Textarea } from './ui/textarea';
+import clsx from 'clsx';
 
 const initialFormState = {
   status: '',
@@ -17,16 +17,16 @@ const initialFormState = {
 };
 
 const ReviewForm = () => {
-  //   const [state, actionFunction, isPending] = useActionState(
-  //     submitReview,
-  //     initialFormState,
-  //   );
+  const [state, actionFunction, isPending] = useActionState(
+    submitReview,
+    initialFormState,
+  );
   return (
     <section className="flex flex-col px-5 gap-8 md:gap-12 py-10">
       <Title as="h3" size="md" className="uppercase text-center">
         Write Us a <span className="wavy-em">Review</span>
       </Title>
-      <Form action={''} className="flex flex-col gap-3">
+      <Form action={actionFunction} className="flex flex-col gap-3">
         <div className="space-y-3">
           <label htmlFor="star" className="block">
             Rating
@@ -71,7 +71,11 @@ const ReviewForm = () => {
 
         <Button
           type="submit"
-          className="text-brand-white hover:text-brand-dark-gray"
+          className={clsx(
+            'text-brand-white hover:text-brand-dark-gray',
+            isPending && 'bg-brand-dark-gray/20',
+          )}
+          disabled={isPending}
         >
           Submit Review
         </Button>

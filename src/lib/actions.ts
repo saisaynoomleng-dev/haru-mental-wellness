@@ -2,6 +2,7 @@
 
 import { client } from '@/sanity/lib/client';
 import { PrevFormStateProps } from './types';
+import { toSlug } from './utils';
 
 export const submitNewsletter = async (
   prevState: PrevFormStateProps,
@@ -121,25 +122,29 @@ export const submitContactForm = async (
   }
 };
 
-// export const submitReview = async (
-//   prevState: PrevFormStateProps,
-//   formData: FormData,
-// ): Promise<{ status: string; message: string; field?: string }> => {
-//   const username = formData.get('username')?.toString().trim() || '';
-//   const role = formData.get('role')?.toString().trim() || '';
-//   const rating = formData.get('rating') || 0;
-//   const desc = formData.get('desc');
+export const submitReview = async (
+  prevState: PrevFormStateProps,
+  formData: FormData,
+): Promise<{ status: string; message: string; field?: string }> => {
+  const username = formData.get('username')?.toString().trim() || '';
+  const role = formData.get('role')?.toString().trim() || '';
+  const rating = formData.get('rating') || 0;
+  const desc = formData.get('desc');
 
-//   await client.create({
-//     _type: 'review',
-//     username,
-//     role,
-//     rating,
-//     desc,
-//   });
+  await client.create({
+    _type: 'review',
+    username,
+    slug: {
+      _type: 'slug',
+      current: toSlug(username),
+    },
+    role,
+    rating: Number(rating),
+    desc,
+  });
 
-//   return {
-//     status: 'ok',
-//     message: 'asdf',
-//   };
-// };
+  return {
+    status: 'success',
+    message: 'Thank you for your Review!',
+  };
+};

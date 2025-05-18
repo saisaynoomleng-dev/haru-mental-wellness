@@ -13,3 +13,13 @@ export const formatDate = (date: string) => {
     day: '2-digit',
   });
 };
+
+// toslug
+export const toSlug = (string: string) => {
+  return string
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[\s+]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};

@@ -272,34 +272,6 @@ export type BlockContent = Array<
     }
 >;
 
-export type FAQ = {
-  _id: string;
-  _type: 'FAQ';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  faqs?: Array<{
-    question?: string;
-    answer?: string;
-    _key: string;
-  }>;
-};
-
-export type Review = {
-  _id: string;
-  _type: 'review';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  username?: string;
-  slug?: Slug;
-  role?: string;
-  rating?: number;
-  desc?: BlockContent;
-};
-
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop';
   top?: number;
@@ -357,6 +329,34 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type FAQ = {
+  _id: string;
+  _type: 'FAQ';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  faqs?: Array<{
+    question?: string;
+    answer?: string;
+    _key: string;
+  }>;
+};
+
+export type Review = {
+  _id: string;
+  _type: 'review';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  username?: string;
+  slug?: Slug;
+  role?: string;
+  rating?: number;
+  desc?: string;
+};
+
 export type Slug = {
   _type: 'slug';
   current?: string;
@@ -394,13 +394,13 @@ export type AllSanitySchemaTypes =
   | Author
   | Treatment
   | BlockContent
-  | FAQ
-  | Review
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | FAQ
+  | Review
   | Slug
   | Contact
   | Newsletter;
@@ -602,7 +602,7 @@ export type REVIEWS_QUERYResult = Array<{
   slug: Slug | null;
   role: string | null;
   rating: number | null;
-  desc: BlockContent | null;
+  desc: string | null;
 }>;
 
 // Query TypeMap

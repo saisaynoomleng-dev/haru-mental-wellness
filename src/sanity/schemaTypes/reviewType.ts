@@ -32,7 +32,7 @@ export const review = defineType({
       name: 'rating',
       title: 'Rating',
       type: 'number',
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.required().min(0).max(5),
     }),
     defineField({
       name: 'desc',

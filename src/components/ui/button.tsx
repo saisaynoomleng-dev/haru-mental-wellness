@@ -13,7 +13,9 @@ const buttonVariants = cva(
         default:
           'rounded-full bg-brand-light-green text-black font-semibold px-2 cursor-pointer group relative overflow-hidden font-bold uppercase',
         link: 'bg-brand-orange rounded-full text-brand-white min-w-15 min-h-15 cursor-pointer group overflow-hidden relative',
-        pagination: '',
+        pagination: 'hover:scale-x-[1.1]',
+        filter:
+          'border-2 border-brand-light-green text-brand-light-green hover:border-brand-dark-green hover:text-brand-dark-green cursor-pointer',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -54,6 +56,7 @@ function Button({
           'absolute h-0 w-full bottom-0  transition-all duration-200 group-hover:h-full origin-bottom z-0',
           variant === 'default' && 'bg-brand-light-blue',
           variant === 'link' && 'bg-brand-light-green',
+          variant === 'pagination' && 'bg-transparent',
         )}
       ></span>
     </Comp>

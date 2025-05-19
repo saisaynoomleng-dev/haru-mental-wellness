@@ -1,5 +1,11 @@
 import { BsNewspaper } from 'react-icons/bs';
-import { FaHandHoldingMedical, FaPenFancy, FaQuestion } from 'react-icons/fa';
+import {
+  FaHandHoldingMedical,
+  FaPenFancy,
+  FaPlusSquare,
+  FaQuestion,
+} from 'react-icons/fa';
+import { FaUserDoctor } from 'react-icons/fa6';
 import { MdOutlineRateReview } from 'react-icons/md';
 import { RiContactsLine } from 'react-icons/ri';
 import { TbLogs } from 'react-icons/tb';
@@ -26,4 +32,8 @@ export const structure: StructureResolver = (S) =>
         .icon(FaHandHoldingMedical),
       S.documentTypeListItem('blog').title('Blogs').icon(TbLogs),
       S.documentTypeListItem('author').title('Authors').icon(FaPenFancy),
+      S.documentTypeListItem('therapist')
+        .title('Therapists')
+        .icon(FaUserDoctor),
+      S.documentTypeListItem('therapy').title('Therapies').icon(FaPlusSquare),
     ]);

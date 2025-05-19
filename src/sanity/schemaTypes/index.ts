@@ -7,6 +7,8 @@ import { blockContentType } from './blockContent';
 import { treatment } from './treatmentType';
 import { blog } from './blogType';
 import { author } from './authorType';
+import { therapist } from './therapistType';
+import { therapy } from './therapyType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +20,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     treatment,
     blog,
     author,
+    therapist,
+    therapy,
   ],
 };

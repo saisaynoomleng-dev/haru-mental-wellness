@@ -251,6 +251,7 @@ const TherapistFilter = ({
                 Session Availablity
               </p>
               <button
+                type="button"
                 className={clsx(
                   'border-2 hover:border-brand-dark-green hover:text-brand-dark-green cursor-pointer flex gap-2 justify-center font-semibold items-center text-center rounded-sm',
                   session === 'online'
@@ -264,6 +265,7 @@ const TherapistFilter = ({
               </button>
 
               <button
+                type="button"
                 className={clsx(
                   'border-2 hover:border-brand-dark-green hover:text-brand-dark-green cursor-pointer flex gap-2 justify-center font-semibold items-center text-center rounded-sm',
                   session === 'in-person'
@@ -277,6 +279,7 @@ const TherapistFilter = ({
               </button>
 
               <button
+                type="button"
                 className={clsx(
                   'border-2 hover:border-brand-dark-green hover:text-brand-dark-green cursor-pointer flex gap-2 justify-center font-semibold items-center text-center rounded-sm',
                   session === 'in-person-online'

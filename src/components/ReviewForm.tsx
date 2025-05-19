@@ -67,6 +67,9 @@ const ReviewForm = () => {
             Comment
           </label>
           <Textarea name="desc" id="desc" />
+          {state.status === 'error' && state.field === 'comment' && (
+            <p>{state.message}</p>
+          )}
         </div>
 
         <Button

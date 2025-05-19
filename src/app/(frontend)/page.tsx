@@ -7,10 +7,15 @@ import ReviewForm from '@/components/ReviewForm';
 import { SpinnerBlock } from '@/components/Spinner';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
+import { urlFor } from '@/sanity/lib/image';
+import { sanityFetch } from '@/sanity/lib/live';
+import { TREATMENTS_QUERY } from '@/sanity/lib/queries';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaQuoteLeft } from 'react-icons/fa';
 
-export default function Home() {
+export default async function Home() {
+  const { data: treatments } = await sanityFetch({ query: TREATMENTS_QUERY });
   return (
     <Bounded>
       {/* Hero */}
@@ -56,7 +61,9 @@ export default function Home() {
         </Title>
 
         <div className="col-start-1 row-start-5 col-span-full md:col-start-2 md:row-start-4 md:col-span-1 md:p-2">
-          <Button className="md:w-full md:h-full">View more</Button>
+          <Button className="md:w-full md:h-full">
+            <Link href="/therapist">View More</Link>
+          </Button>
         </div>
 
         <div className="col-start-2 place-self-end md:col-start-3 md:col-span-2 max-w-[300px] max-h-[300px] triangle-image">
@@ -114,7 +121,7 @@ export default function Home() {
             Saepe, quae praesentium.
           </p>
 
-          <Cta href="/" className="self-start" />
+          <Cta href="/treatment" className="self-start" />
         </div>
 
         <div className="col-start-1 col-span-1 row-span-2 self-center md:col-start-1 md:col-span-2 md:row-start-3">
@@ -170,13 +177,39 @@ export default function Home() {
       </div>
 
       {/* Treatment */}
-      <div className="flex flex-col md:flex-row gap-y-5 bg-brand-light-gray px-10 add-padding text-brand-dark-gray">
-        <Title as="h3" size="sm" className="uppercase md:flex-1/2">
+      <div className="grid md:grid-cols-[300px_1fr] gap-y-5 bg-brand-light-gray px-10 add-padding text-brand-dark-gray py-42 gap-10 overflow-hidden">
+        <Title as="h3" size="sm" className="uppercase">
           How Can we help you today?
         </Title>
 
-        <div className="divide-y-2 divide-brand-dark-gray">
-          {/* treatments  */}
+        <div>
+          {treatments.map((treatment) => (
+            <Link
+              href={`/treatment/${treatment.slug?.current}`}
+              key={treatment.slug?.current}
+              className="group py-10 block"
+            >
+              <div className="relative">
+                <span className="uppercase block border-b relative z-20 font-bold group-hover:text-brand-orange">
+                  {treatment.title}
+                </span>
+                {treatment.mainImage?.asset?.url && (
+                  <Image
+                    src={urlFor(treatment.mainImage?.asset?.url)
+                      .width(200)
+                      .height(200)
+                      .format('webp')
+                      .url()}
+                    width={200}
+                    height={200}
+                    alt=""
+                    priority
+                    className="opacity-0 group-hover:opacity-100 absolute z-10 left-20 top-0 rounded-full transition-all duration-500 ease-in-out"
+                  />
+                )}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 

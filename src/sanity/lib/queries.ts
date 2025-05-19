@@ -117,3 +117,66 @@ export const REVIEWS_QUERY = defineQuery(`*[_type == 'review'
    rating,
    desc
   }`);
+
+export const THERAPISTS_QUERY = defineQuery(`*[_type == 'therapist'
+  && defined(slug.current)
+  && (
+    !defined($search) 
+    || name match $search 
+    || location.cities[] match $search
+    || location.address match $search
+    || location.zips[] match $search
+    || location.counties[] match $search
+    )
+  && (!defined($session) || session match $session)
+  &&  (!defined($insurance) || insurance match $insurance)
+  && (!defined($expertise) || expertise match $expertise)
+  && (!defined($ageSpecific) || ageSpecific match $ageSpecific)
+  ]{
+   name,
+   slug,
+   mainImage{
+     asset->{url},
+     alt
+   },
+   bio,
+   session,
+   role,
+  } | order(name desc)`);
+
+export const THERAPIST_QUERY = defineQuery(`*[_type == 'therapist'
+  && slug.current == $slug][0]{
+   name,
+   slug,
+   role,
+   verification,
+   bio,
+   session,
+   quote,
+   price,
+   paymentMethod,
+   insurance,
+   education,
+   experience,
+   credential,
+   specialties,
+   expertise,
+   ageSpecific,
+   participant,
+   communities,
+   therapy[]->{
+     name,
+     desc
+   },
+   location{
+     address,
+     cities,
+     phone,
+     counties,
+     zips
+   },
+   mainImage{
+     ...,
+     asset->{url}
+   }
+  }`);

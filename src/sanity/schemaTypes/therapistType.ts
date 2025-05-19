@@ -1,0 +1,348 @@
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { FaUserDoctor } from 'react-icons/fa6';
+
+export const therapist = defineType({
+  name: 'therapist',
+  icon: FaUserDoctor,
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      validation: (rule) => rule.required(),
+      options: {
+        source: 'name',
+      },
+    }),
+    defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'verification',
+      title: 'Verification',
+      type: 'boolean',
+      initialValue: true,
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'bio',
+      title: 'Bio',
+      type: 'text',
+      validation: (rule) => rule.required().min(20),
+    }),
+    defineField({
+      name: 'session',
+      title: 'Session',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'In Person', value: 'in-person' },
+          { title: 'Online', value: 'online' },
+          { title: 'Both', value: 'in-person-online' },
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'quote',
+      title: 'Quote',
+      type: 'string',
+    }),
+    defineField({
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'paymentMethod',
+      title: 'Payment Method',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Cash', value: 'cash' },
+          { title: 'Check', value: 'check' },
+          { title: 'Health Svaings Account', value: 'account' },
+          { title: 'Mastercard', value: 'mastercard' },
+          { title: 'Paypal', value: 'paypal' },
+          { title: 'Venmo', value: 'venmo' },
+          { title: 'Discover', value: 'discover' },
+          { title: 'Visa', value: 'visa' },
+          { title: 'American Express', value: 'american-express' },
+          { title: 'Zelle', value: 'zelle' },
+        ],
+        layout: 'grid',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'insurance',
+      title: 'Insurance',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Aetna', value: 'aetna' },
+          { title: 'BHS | Behavioral Health Systems', value: 'bhs' },
+          { title: 'BlueCross And BlueShield', value: 'bluecross' },
+          { title: 'Carelon Behavioral Health', value: 'carelon' },
+          { title: 'Medicare', value: 'medicare' },
+          { title: 'Meritain Health', value: 'meritain' },
+          { title: 'New Directions | Lucet', value: 'new-directions-lucet' },
+          { title: 'Optum', value: 'Optum' },
+          { title: 'United Medical Resources', value: 'umr' },
+          { title: 'UnitedHealthcare UHC | UBH', value: 'uhc-ubh' },
+          { title: 'ComPsych', value: 'compsych' },
+          { title: 'Uprise Health', value: 'uprise-health' },
+          { title: 'Out of Network', value: 'out-of-network' },
+        ],
+        layout: 'grid',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'education',
+      title: 'Education',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'experience',
+      title: 'Experience',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'credential',
+      title: 'Credential',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'specialties',
+      title: 'Specialties',
+      type: 'array',
+      of: [{ type: 'string' }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'expertise',
+      title: 'Expertise',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Chronic Illness', value: 'chronic-illness' },
+          { title: 'Chronic Pain', value: 'chronic-pain' },
+          { title: 'Coping Skills', value: 'Coping Skills' },
+          { title: 'Couples', value: 'couples' },
+          { title: 'Family Conflict', value: 'family-conflict' },
+          { title: 'First Responders', value: 'first-responders' },
+          { title: 'grief', value: 'grief' },
+          { title: 'Infertility', value: 'infertility' },
+          { title: 'LGBTQ+', value: 'lgbtq+' },
+          { title: 'Life Coaching', value: 'life-coaching' },
+          { title: 'Life Transitions', value: 'life-transitions' },
+          { title: 'Mood Disorders', value: 'mood-disorders' },
+          {
+            title: 'Pregnancy, Prenatal, Postpartum',
+            value: 'pregnancy-prenatal-postpartum',
+          },
+          { title: 'Relationship Issues', value: 'relationship-issues' },
+          { title: 'Self Esteem', value: 'self-esteem' },
+          { title: 'Sex-Positive, Kink Allied', value: 'sex-positive' },
+          { title: 'Spirituality', value: 'spirituality' },
+          { title: 'Stress', value: 'stress' },
+          { title: 'Suicidal Ideation', value: 'suicidal-ideation' },
+          { title: 'Transgender', value: 'transgender' },
+          { title: 'Veterans', value: 'veterans' },
+          { title: `Women's Issues`, value: 'women-issues' },
+          { title: `Addiction`, value: 'addiction' },
+          { title: `ADHD`, value: 'adhd' },
+          { title: `Anger Management`, value: 'anger-management' },
+          { title: `Bipolar Disorder`, value: 'bipolar-disorder' },
+          { title: `Body Positivity`, value: 'body-positivity' },
+          {
+            title: `Borderline Personality (BPD)`,
+            value: 'borderline-personality',
+          },
+        ],
+        layout: 'grid',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'ageSpecific',
+      title: 'Age Specific',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Preteen', value: 'preteen' },
+          { title: 'Teen', value: 'teen' },
+          { title: 'Adults', value: 'adults' },
+          { title: 'Elders', value: 'elders' },
+        ],
+        layout: 'grid',
+      },
+    }),
+    defineField({
+      name: 'participant',
+      title: 'Participants',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
+      name: 'communities',
+      title: 'Communities',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Bisexual Allied', value: 'bisexual-allied' },
+          { title: 'Gay Allied', value: 'gay-allied' },
+          { title: 'HIV/AIDS Allied', value: 'hiv-allied' },
+          { title: 'Lesbian Allied', value: 'lesbian-allied' },
+          { title: 'Transgender Allied', value: 'transgender-allied' },
+          { title: 'Immuno-disorders', value: 'Immuno-disorders' },
+        ],
+        layout: 'grid',
+      },
+    }),
+    defineField({
+      name: 'therapy',
+      title: 'Therapy',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'therapy' }] }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'address',
+          title: 'Address',
+          type: 'string',
+        }),
+        defineField({
+          name: 'phone',
+          title: 'Phone',
+          type: 'string',
+        }),
+        defineField({
+          name: 'cities',
+          title: 'Cities',
+          type: 'array',
+          of: [{ type: 'string' }],
+        }),
+        defineField({
+          name: 'counties',
+          title: 'Counties',
+          type: 'array',
+          of: [{ type: 'string' }],
+        }),
+        defineField({
+          name: 'zips',
+          title: 'Zips',
+          type: 'array',
+          of: [{ type: 'string' }],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'contactList',
+      title: 'Contact Lists',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+            }),
+            defineField({
+              name: 'email',
+              title: 'Email',
+              type: 'email',
+            }),
+            defineField({
+              name: 'phone',
+              title: 'Phone',
+              type: 'string',
+            }),
+            defineField({
+              name: 'subject',
+              title: 'Subject',
+              type: 'string',
+            }),
+            defineField({
+              name: 'message',
+              title: 'Message',
+              type: 'text',
+            }),
+            defineField({
+              name: 'preferredContact',
+              title: 'Preffered Contact',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Phone', value: 'phone' },
+                  { title: 'SMS', value: 'sms' },
+                  { title: 'Email', value: 'email' },
+                ],
+                layout: 'radio',
+              },
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      validation: (rule) => rule.required(),
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
+          validation: (rule) => rule.required(),
+        }),
+      ],
+    }),
+  ],
+  preview: {
+    select: {
+      name: 'name',
+      address: 'location.address',
+      role: 'role',
+      image: 'mainImage',
+    },
+    prepare({ name, address, role, image }) {
+      return {
+        title: `${name} | ${role}`,
+        subtitle: address,
+        media: image,
+      };
+    },
+  },
+});

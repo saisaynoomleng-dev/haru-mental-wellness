@@ -154,7 +154,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply text-fs-400 font-sans bg-brand-dark-green text-brand-white leading-normal tracking-normal overflow-x-hidden min-h-dvh;
+    @apply text-fs-400 font-sans bg-brand-dark-green text-brand-white leading-normal tracking-normal overflow-x-hidden min-h-dvh scroll-smooth;
   }
 }
 

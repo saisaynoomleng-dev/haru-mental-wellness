@@ -23,3 +23,7 @@ export const toSlug = (string: string) => {
     .replace(/-+/g, '-')
     .replace(/^-+|-+$/g, '');
 };
+
+export const formatText = (text: string) => {
+  return text.replace(/-/g, ' ');
+};

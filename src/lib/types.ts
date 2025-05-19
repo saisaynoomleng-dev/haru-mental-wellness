@@ -31,3 +31,16 @@ export type BlogCardProps = {
   href: string | '';
   className?: string;
 };
+
+// therapist filter
+export type TherapistFilterProps = {
+  location?: string;
+  session?: string;
+  expertise?: string;
+  insurance?: string;
+  price?: string;
+  therapy?: string;
+  ageSpecific?: string;
+  therapist?: string;
+  search?: string;
+};

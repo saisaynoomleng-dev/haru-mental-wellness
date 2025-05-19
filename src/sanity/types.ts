@@ -68,6 +68,79 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Therapy = {
+  _id: string;
+  _type: 'therapy';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  desc?: string;
+};
+
+export type Therapist = {
+  _id: string;
+  _type: 'therapist';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  role?: string;
+  verification?: boolean;
+  bio?: string;
+  session?: 'in-person' | 'online' | 'in-person-online';
+  quote?: string;
+  price?: number;
+  paymentMethod?: Array<string>;
+  insurance?: Array<string>;
+  education?: string;
+  experience?: string;
+  credential?: Array<string>;
+  specialties?: Array<string>;
+  expertise?: Array<string>;
+  ageSpecific?: Array<string>;
+  participant?: Array<string>;
+  communities?: Array<string>;
+  therapy?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'therapy';
+  }>;
+  location?: {
+    address?: string;
+    phone?: string;
+    cities?: Array<string>;
+    counties?: Array<string>;
+    zips?: Array<string>;
+  };
+  contactList?: Array<{
+    name?: string;
+    email?: string;
+    phone?: string;
+    subject?: string;
+    message?: string;
+    preferredContact?: 'phone' | 'sms' | 'email';
+    _key: string;
+  }>;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  };
+};
+
 export type Blog = {
   _id: string;
   _type: 'blog';
@@ -390,6 +463,8 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Therapy
+  | Therapist
   | Blog
   | Author
   | Treatment
@@ -604,6 +679,64 @@ export type REVIEWS_QUERYResult = Array<{
   rating: number | null;
   desc: string | null;
 }>;
+// Variable: THERAPISTS_QUERY
+// Query: *[_type == 'therapist'  && defined(slug.current)  && (    !defined($search)     || name match $search     || location.cities[] match $search    || location.address match $search    || location.zips[] match $search    || location.counties[] match $search    )  && (!defined($session) || session match $session)  &&  (!defined($insurance) || insurance match $insurance)  && (!defined($expertise) || expertise match $expertise)  && (!defined($ageSpecific) || ageSpecific match $ageSpecific)  ]{   name,   slug,   mainImage{     asset->{url},     alt   },   bio,   session,   role,  } | order(name desc)
+export type THERAPISTS_QUERYResult = Array<{
+  name: string | null;
+  slug: Slug | null;
+  mainImage: {
+    asset: {
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  bio: string | null;
+  session: 'in-person-online' | 'in-person' | 'online' | null;
+  role: string | null;
+}>;
+// Variable: THERAPIST_QUERY
+// Query: *[_type == 'therapist'  && slug.current == $slug][0]{   name,   slug,   role,   verification,   bio,   session,   quote,   price,   paymentMethod,   insurance,   education,   experience,   credential,   specialties,   expertise,   ageSpecific,   participant,   communities,   therapy[]->{     name,     desc   },   location{     address,     cities,     phone,     counties,     zips   },   mainImage{     ...,     asset->{url}   }  }
+export type THERAPIST_QUERYResult = {
+  name: string | null;
+  slug: Slug | null;
+  role: string | null;
+  verification: boolean | null;
+  bio: string | null;
+  session: 'in-person-online' | 'in-person' | 'online' | null;
+  quote: string | null;
+  price: number | null;
+  paymentMethod: Array<string> | null;
+  insurance: Array<string> | null;
+  education: string | null;
+  experience: string | null;
+  credential: Array<string> | null;
+  specialties: Array<string> | null;
+  expertise: Array<string> | null;
+  ageSpecific: Array<string> | null;
+  participant: Array<string> | null;
+  communities: Array<string> | null;
+  therapy: Array<{
+    name: string | null;
+    desc: string | null;
+  }> | null;
+  location: {
+    address: string | null;
+    cities: Array<string> | null;
+    phone: string | null;
+    counties: Array<string> | null;
+    zips: Array<string> | null;
+  } | null;
+  mainImage: {
+    asset: {
+      url: string | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  } | null;
+} | null;
 
 // Query TypeMap
 import '@sanity/client';
@@ -618,5 +751,7 @@ declare module '@sanity/client' {
     "*[_type == 'author'\n  && defined(slug.current)]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   }\n  } | order(name)": AUTHORS_QUERYResult;
     "*[_type == 'author'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   book[]{\n    title,\n    url,\n    mainImage{\n      asset->{url},\n      alt\n    }\n  },\n   mainImage{\n     asset->{url},\n     alt\n   },\n   links[]{\n    title,\n    url\n   },\n   bio\n  }": AUTHOR_QUERYResult;
     "*[_type == 'review'\n  && defined(slug.current)]{\n   username,\n   slug,\n   role,\n   rating,\n   desc\n  }": REVIEWS_QUERYResult;
+    "*[_type == 'therapist'\n  && defined(slug.current)\n  && (\n    !defined($search) \n    || name match $search \n    || location.cities[] match $search\n    || location.address match $search\n    || location.zips[] match $search\n    || location.counties[] match $search\n    )\n  && (!defined($session) || session match $session)\n  &&  (!defined($insurance) || insurance match $insurance)\n  && (!defined($expertise) || expertise match $expertise)\n  && (!defined($ageSpecific) || ageSpecific match $ageSpecific)\n  ]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   },\n   bio,\n   session,\n   role,\n  } | order(name desc)": THERAPISTS_QUERYResult;
+    "*[_type == 'therapist'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   role,\n   verification,\n   bio,\n   session,\n   quote,\n   price,\n   paymentMethod,\n   insurance,\n   education,\n   experience,\n   credential,\n   specialties,\n   expertise,\n   ageSpecific,\n   participant,\n   communities,\n   therapy[]->{\n     name,\n     desc\n   },\n   location{\n     address,\n     cities,\n     phone,\n     counties,\n     zips\n   },\n   mainImage{\n     ...,\n     asset->{url}\n   }\n  }": THERAPIST_QUERYResult;
   }
 }

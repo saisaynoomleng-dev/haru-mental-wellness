@@ -71,7 +71,7 @@ const BlogPage = async ({
           ))}
 
           <div className="col-span-full flex gap-3 items-center">
-            <Button variant="pagination" disabled={currentPage === 1}>
+            <Button disabled={currentPage === 1}>
               <Link
                 href={{
                   pathname: '/blog',
@@ -111,7 +111,7 @@ const BlogPage = async ({
                 )}
               </div>
             )}
-            <Button variant="pagination" disabled={currentPage === totalPages}>
+            <Button disabled={currentPage === totalPages}>
               <Link
                 href={{
                   pathname: '/blog',

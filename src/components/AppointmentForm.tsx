@@ -18,7 +18,6 @@ import { useActionState, useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
-import { Calendar } from './ui/calendar';
 import { submitAppointment } from '@/lib/actions';
 import { Button } from './ui/button';
 import clsx from 'clsx';
@@ -189,11 +188,10 @@ const AppointmentForm = ({
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
+            <Input
+              type="date"
+              name="date"
+              value={date ? format(date, 'yyyy-MM-dd') : ''}
             />
           </PopoverContent>
         </Popover>
@@ -244,12 +242,6 @@ const AppointmentForm = ({
           <p className="text-red-500 italic text-fs-300">{state.message}</p>
         )}
       </div>
-
-      <input
-        type="hidden"
-        name="date"
-        value={date ? format(date, 'yyyy-MM-dd') : ''}
-      />
 
       <Button
         disabled={isPending}

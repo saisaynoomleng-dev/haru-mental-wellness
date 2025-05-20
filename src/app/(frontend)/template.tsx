@@ -7,12 +7,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <main>
-      {/* <Curtain /> */}
-      <Header />
-      {children}
-      <Footer />
-    </main>
-  );
+  return <main>{children}</main>;
 }

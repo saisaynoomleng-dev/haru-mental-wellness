@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { sans, serif } from '@/lib/fonts';
 import { SanityLive } from '@/sanity/lib/live';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable}`}>
-        {children} <SanityLive />
+        {children}
+        <SanityLive />
+        <Toaster />
       </body>
     </html>
   );

@@ -180,3 +180,15 @@ export const THERAPIST_QUERY = defineQuery(`*[_type == 'therapist'
      asset->{url}
    }
   }`);
+
+export const APPOINTMENT_THERAPISTS_QUERY = defineQuery(`*[_type == 'therapist'
+    && defined(slug.current)]{
+     name,
+     _id,
+     role,
+     slug,
+     mainImage{
+       ...,
+       asset->{url}
+     }
+    } | order(name desc)`);

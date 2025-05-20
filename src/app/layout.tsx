@@ -3,6 +3,8 @@ import './globals.css';
 import { sans, serif } from '@/lib/fonts';
 import { SanityLive } from '@/sanity/lib/live';
 import { Toaster } from 'sonner';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable}`}>
+        <Header />
         {children}
+        <Footer />
         <SanityLive />
         <Toaster />
       </body>

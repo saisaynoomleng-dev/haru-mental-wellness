@@ -188,11 +188,7 @@ const AppointmentForm = ({
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="start">
-            <Input
-              type="date"
-              name="date"
-              value={date ? format(date, 'yyyy-MM-dd') : ''}
-            />
+            <Input type="date" name="date" />
           </PopoverContent>
         </Popover>
         {state.status === 'error' && state.field === 'date' && (

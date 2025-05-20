@@ -16,6 +16,7 @@ const buttonVariants = cva(
         pagination: 'hover:scale-x-[1.1]',
         filter:
           'border-2 border-brand-light-green text-brand-light-green hover:border-brand-dark-green hover:text-brand-dark-green cursor-pointer',
+        ghost: '',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

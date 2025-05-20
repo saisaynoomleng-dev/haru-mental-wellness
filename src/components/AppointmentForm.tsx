@@ -14,7 +14,7 @@ import { APPOINTMENT_THERAPISTS_QUERYResult } from '@/sanity/types';
 import { SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
-import { useActionState, useEffect, useRef, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';

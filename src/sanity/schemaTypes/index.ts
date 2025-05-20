@@ -9,6 +9,7 @@ import { blog } from './blogType';
 import { author } from './authorType';
 import { therapist } from './therapistType';
 import { therapy } from './therapyType';
+import { appointment } from './appointmentType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -22,5 +23,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     author,
     therapist,
     therapy,
+    appointment,
   ],
 };

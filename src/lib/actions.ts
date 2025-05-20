@@ -148,3 +148,116 @@ export const submitReview = async (
     message: 'Thank you for your Review!',
   };
 };
+
+export const submitAppointment = async (
+  prevState: PrevFormStateProps,
+  formData: FormData,
+): Promise<{ status: string; message: string; field?: string }> => {
+  const firstName = formData.get('firstname')?.toString().trim();
+  const lastName = formData.get('lastname')?.toString().trim();
+  const email = formData.get('email')?.toString().trim();
+  const phone = formData.get('phone');
+  const therapist = formData.get('therapist');
+  const date = formData.get('date');
+  const service = formData.get('service');
+  const introText = formData.get('intro');
+  const reg_email = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+  const reg_phone = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
+
+  if (!firstName) {
+    return {
+      status: 'error',
+      message: `First Name Field can't be empty`,
+      field: 'firstname',
+    };
+  }
+
+  if (!lastName) {
+    return {
+      status: 'error',
+      message: `Last name Field can't be empty`,
+      field: 'lastname',
+    };
+  }
+
+  if (!email) {
+    return {
+      status: 'error',
+      message: `Email Field can't be empty`,
+      field: 'email',
+    };
+  }
+
+  if (!reg_email.test(email)) {
+    return {
+      status: 'error',
+      message: 'Must be a valid email',
+      field: 'email',
+    };
+  }
+
+  if (!phone) {
+    return {
+      status: 'error',
+      message: 'Phone Field cannot be empty',
+      field: 'phone',
+    };
+  }
+
+  if (!reg_phone.test(phone.toString())) {
+    return {
+      status: 'error',
+      message: 'Phone Number must be exactly 10 digit',
+      field: 'phone',
+    };
+  }
+
+  if (!date) {
+    return {
+      status: 'error',
+      message: `Date field can't be empty`,
+      field: 'date',
+    };
+  }
+
+  if (!service) {
+    return {
+      status: 'error',
+      message: 'Please Select a Service',
+      field: 'service',
+    };
+  }
+
+  if (!introText) {
+    return {
+      status: 'error',
+      message:
+        'Text Field must have at least 10 characters and cannot be empty',
+      field: 'intro',
+    };
+  }
+
+  await client.create({
+    _type: 'appointment',
+    firstName,
+    lastName,
+    slug: {
+      _type: 'slug',
+      current: firstName,
+    },
+    service,
+    email,
+    phone,
+    therapist: {
+      _type: 'reference',
+      _ref: therapist?.toString(),
+    },
+    date,
+    intro: introText,
+  });
+
+  return {
+    status: 'success',
+    message: 'Setting Appointment Successful',
+  };
+};

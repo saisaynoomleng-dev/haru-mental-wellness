@@ -68,6 +68,33 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Appointment = {
+  _id: string;
+  _type: 'appointment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  firstName?: string;
+  lastName?: string;
+  slug?: Slug;
+  email?: string;
+  phone?: string;
+  service?:
+    | 'depression'
+    | 'family-conflict'
+    | 'relationships'
+    | 'stress'
+    | 'life-changes';
+  therapist?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'therapist';
+  };
+  date?: string;
+  intro?: string;
+};
+
 export type Therapy = {
   _id: string;
   _type: 'therapy';
@@ -463,6 +490,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Appointment
   | Therapy
   | Therapist
   | Blog
@@ -737,6 +765,24 @@ export type THERAPIST_QUERYResult = {
     _type: 'image';
   } | null;
 } | null;
+// Variable: APPOINTMENT_THERAPISTS_QUERY
+// Query: *[_type == 'therapist'    && defined(slug.current)]{     name,     _id,     role,     slug,     mainImage{       ...,       asset->{url}     }    } | order(name desc)
+export type APPOINTMENT_THERAPISTS_QUERYResult = Array<{
+  name: string | null;
+  _id: string;
+  role: string | null;
+  slug: Slug | null;
+  mainImage: {
+    asset: {
+      url: string | null;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: 'image';
+  } | null;
+}>;
 
 // Query TypeMap
 import '@sanity/client';
@@ -753,5 +799,6 @@ declare module '@sanity/client' {
     "*[_type == 'review'\n  && defined(slug.current)]{\n   username,\n   slug,\n   role,\n   rating,\n   desc\n  }": REVIEWS_QUERYResult;
     "*[_type == 'therapist'\n  && defined(slug.current)\n  && (\n    !defined($search) \n    || name match $search \n    || location.cities[] match $search\n    || location.address match $search\n    || location.zips[] match $search\n    || location.counties[] match $search\n    )\n  && (!defined($session) || session match $session)\n  &&  (!defined($insurance) || insurance match $insurance)\n  && (!defined($expertise) || expertise match $expertise)\n  && (!defined($ageSpecific) || ageSpecific match $ageSpecific)\n  ]{\n   name,\n   slug,\n   mainImage{\n     asset->{url},\n     alt\n   },\n   bio,\n   session,\n   role,\n  } | order(name desc)": THERAPISTS_QUERYResult;
     "*[_type == 'therapist'\n  && slug.current == $slug][0]{\n   name,\n   slug,\n   role,\n   verification,\n   bio,\n   session,\n   quote,\n   price,\n   paymentMethod,\n   insurance,\n   education,\n   experience,\n   credential,\n   specialties,\n   expertise,\n   ageSpecific,\n   participant,\n   communities,\n   therapy[]->{\n     name,\n     desc\n   },\n   location{\n     address,\n     cities,\n     phone,\n     counties,\n     zips\n   },\n   mainImage{\n     ...,\n     asset->{url}\n   }\n  }": THERAPIST_QUERYResult;
+    "*[_type == 'therapist'\n    && defined(slug.current)]{\n     name,\n     _id,\n     role,\n     slug,\n     mainImage{\n       ...,\n       asset->{url}\n     }\n    } | order(name desc)": APPOINTMENT_THERAPISTS_QUERYResult;
   }
 }

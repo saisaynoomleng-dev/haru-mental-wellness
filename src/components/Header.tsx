@@ -43,43 +43,49 @@ const Header = () => {
         HARU
       </Link>
 
-      <button
-        onClick={() => setNavOpen((prevOpen) => !prevOpen)}
-        aria-controls="#main-menu"
-        aria-label="navigation menu button"
-        className={clsx(
-          "md:hidden block w-8 h-[2px] rounded-lg bg-brand-white cursor-pointer relative z-50 after:z-50 after:absolute after:content-[''] transition-all duration-100 ease-in ",
-          navOpen
-            ? 'rotate-45 after:rotate-90 after:w-8 after:top-0 after:right-0 after:h-[2px] after:bg-brand-white after:rounded-lg'
-            : 'after:w-5 after:h-[2px] after:bg-brand-white after:right-0 after:top-2 after:rounded-lg',
-        )}
-      >
-        <span className="sr-only">Main Menu</span>
-      </button>
+      <div className="flex items-center gap-5">
+        <Link href="/appointment" className="hover:text-brand-orange">
+          Make an Appointment
+        </Link>
 
-      <nav
-        className={clsx(
-          'flex flex-col items-center justify-center md:flex-row gap-5',
-          'max-md:fixed max-md:h-screen max-md:inset-0 max-md:bg-brand-dark-blue max-md:z-20 max-md:transition-transform duration-300 ease-in-out ',
-          navOpen ? 'max-md:translate-y-0' : 'max-md:-translate-y-full',
-        )}
-      >
-        {navLinks.map((link) => (
-          <Link
-            key={link.title}
-            href={link.url}
-            onClick={() => setNavOpen(false)}
-            className={clsx(
-              'font-semibold',
-              pathname === link.url &&
-                'text-brand-orange underline underline-offset-4 decoration-wavy',
-              isScrolled && pathname === link.url && 'text-brand-dark-gray',
-            )}
-          >
-            {link.title}
-          </Link>
-        ))}
-      </nav>
+        <button
+          onClick={() => setNavOpen((prevOpen) => !prevOpen)}
+          aria-controls="#main-menu"
+          aria-label="navigation menu button"
+          className={clsx(
+            "w-8 h-[2px] rounded-lg bg-brand-white cursor-pointer relative z-50 after:z-50 after:absolute after:content-[''] transition-all duration-100 ease-in ",
+            navOpen
+              ? 'rotate-45 after:rotate-90 after:w-8 after:top-0 after:right-0 after:h-[2px] after:bg-brand-white after:rounded-lg'
+              : 'after:w-5 after:h-[2px] after:bg-brand-white after:right-0 after:top-2 after:rounded-lg after:block',
+          )}
+        >
+          <span className="sr-only">Main Menu</span>
+        </button>
+
+        <nav
+          className={clsx(
+            'flex flex-col items-center justify-center gap-5',
+            'fixed h-screen inset-0 bg-brand-dark-blue z-20 transition-transform duration-300 ease-in-out ',
+            navOpen ? 'translate-y-0' : '-translate-y-full',
+          )}
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.title}
+              href={link.url}
+              onClick={() => setNavOpen(false)}
+              className={clsx(
+                'font-semibold',
+                pathname === link.url &&
+                  'text-brand-orange underline underline-offset-4 decoration-wavy',
+                isScrolled && pathname === link.url && 'text-brand-dark-gray',
+              )}
+            >
+              {link.title}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 };

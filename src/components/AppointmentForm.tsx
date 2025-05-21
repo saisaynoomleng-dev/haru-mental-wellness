@@ -46,11 +46,11 @@ const AppointmentForm = ({
   therapists: NonNullable<APPOINTMENT_THERAPISTS_QUERYResult>;
 }) => {
   const allTherapists = therapists;
-  const [date, setDate] = useState<Date>();
   const [state, actionFunction, isPending] = useActionState(
     submitAppointment,
     initialFormState,
   );
+  const [date, setDate] = useState<Date>();
 
   useEffect(() => {
     if (state.status === 'success') {
@@ -188,7 +188,14 @@ const AppointmentForm = ({
             </button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="start">
-            <Input type="date" name="date" />
+            <Input
+              type="date"
+              name="date"
+              onChange={(e) => {
+                const selectedDate = e.target.valueAsDate;
+                setDate(selectedDate ?? undefined);
+              }}
+            />
           </PopoverContent>
         </Popover>
         {state.status === 'error' && state.field === 'date' && (

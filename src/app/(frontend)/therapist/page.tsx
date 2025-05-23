@@ -7,8 +7,13 @@ import { Button } from '@/components/ui/button';
 import { sanityFetch } from '@/sanity/lib/live';
 import { THERAPISTS_QUERY } from '@/sanity/lib/queries';
 import clsx from 'clsx';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+
+export const metadata: Metadata = {
+  title: 'Therapists',
+};
 
 const TherapistPage = async ({
   searchParams,

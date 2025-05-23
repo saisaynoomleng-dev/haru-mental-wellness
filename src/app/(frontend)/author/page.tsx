@@ -3,6 +3,11 @@ import Bounded from '@/components/Bounded';
 import Title from '@/components/Title';
 import { sanityFetch } from '@/sanity/lib/live';
 import { AUTHORS_QUERY } from '@/sanity/lib/queries';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Authors',
+};
 
 const AuthorPage = async () => {
   const { data: authors } = await sanityFetch({ query: AUTHORS_QUERY });

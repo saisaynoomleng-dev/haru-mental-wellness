@@ -35,7 +35,10 @@ const Footer = () => {
           voluptate accusamus ut pariatur veritatis perferendis tenetur,
           adipisci esse nesciunt omnis.
         </p>
-        <Link href="/" className="font-serif underline underline-offset-2">
+        <Link
+          href="/appointment"
+          className="font-serif underline underline-offset-2"
+        >
           Make an Appointment
         </Link>
       </div>

@@ -91,7 +91,7 @@ const Footer = () => {
         <p>
           Copyright&copy;Haru Mental Wellness&reg; {new Date().getFullYear()}
         </p>
-        <p>Designed by Sai Say Noom Leng.</p>
+        <p>Designed & devloped by Sai Say Noom Leng.</p>
       </div>
     </footer>
   );

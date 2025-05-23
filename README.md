@@ -23,6 +23,7 @@
   - age groups(preteen, teen, adults, elders)
 - Daily blog posts written by certified psychologists with different categories such as relationships, depressions, anger issues and much more.
 - Users can get free consulting on several treatments on depression, eating disorder, relationship, and stress.
+- Users can leave reviews and instantly see their reviews in page.
 
 ## Tech Stack
 

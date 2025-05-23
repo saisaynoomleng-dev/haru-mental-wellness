@@ -2,8 +2,13 @@ import Bounded from '@/components/Bounded';
 import Title from '@/components/Title';
 import { sanityFetch } from '@/sanity/lib/live';
 import { REVIEWS_QUERY } from '@/sanity/lib/queries';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
+
+export const metadata: Metadata = {
+  title: 'Reviews',
+};
 
 const ReviewPage = async () => {
   const { data: reviews } = await sanityFetch({

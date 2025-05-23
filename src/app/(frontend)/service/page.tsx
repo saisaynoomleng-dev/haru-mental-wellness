@@ -4,8 +4,13 @@ import Cta from '@/components/Cta';
 import NewsSubscription from '@/components/NewsSubscription';
 import Title from '@/components/Title';
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Services',
+};
 
 const ServicePage = () => {
   return (
@@ -91,7 +96,7 @@ const ServicePage = () => {
             priority
             width={500}
             height={500}
-            className="rounded-lg"
+            className="rounded-lg mx-auto"
             src="/service-2.jpg"
           />
         </div>

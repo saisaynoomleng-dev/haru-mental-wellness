@@ -2,7 +2,12 @@ import Bounded from '@/components/Bounded';
 import ContactForm from '@/components/ContactForm';
 import Newsletter from '@/components/Newsletter';
 import Title from '@/components/Title';
+import { Metadata } from 'next';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+};
 
 const ContactPage = () => {
   return (

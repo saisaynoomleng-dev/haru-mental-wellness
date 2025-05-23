@@ -107,7 +107,7 @@ export default async function Home() {
       {/* About Mental Health */}
       <div className="grid grid-cols-2 gap-5 md:gap-10 row-auto md:grid-cols-6 add-padding">
         <ScrubberEffect className="uppercase font-serif col-span-full row-start-1">
-          <Title as="h1" size="md" className="">
+          <Title as="h2" size="sm" className="">
             Mental health is{' '}
             <span className="text-brand-light-green">preserved</span>
             <span className="text-brand-orange">wealth</span>

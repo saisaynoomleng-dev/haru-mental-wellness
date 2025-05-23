@@ -3,6 +3,7 @@
 import { client } from '@/sanity/lib/client';
 import { PrevFormStateProps } from './types';
 import { toSlug } from './utils';
+import { revalidatePath } from 'next/cache';
 
 export const submitNewsletter = async (
   prevState: PrevFormStateProps,
@@ -142,6 +143,8 @@ export const submitReview = async (
     rating: Number(rating),
     desc,
   });
+
+  revalidatePath('/reviews');
 
   return {
     status: 'success',

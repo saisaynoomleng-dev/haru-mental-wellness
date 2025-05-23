@@ -120,7 +120,7 @@ export default async function Home() {
         />
 
         <div className="col-start-1 col-span-full flex flex-col gap-y-5 md:gap-y-8 md:col-start-2 md:col-span-3 md:text-center md:row-start-2">
-          <LineTextHeight className="first-letter:text-fs-700 first-letter:font-serif first-letter:float-left first-letter:mr-3">
+          <LineTextHeight>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla
             necessitatibus culpa quidem. Doloribus totam blanditiis atque
             eligendi incidunt aperiam libero. Tempora eligendi quo modi quisquam

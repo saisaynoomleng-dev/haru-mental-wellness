@@ -12,7 +12,7 @@ const AboutPage = () => {
         <Title
           as="h1"
           size="sm"
-          className="uppercase col-start-1 col-span-full row-start-1 pb-5 text-center md:row-start-2 !text-fs-500 font-serif"
+          className="uppercase col-start-1 col-span-full row-start-1 pb-5 text-center md:row-start-2 !text-fs-400 font-serif"
         >
           Mindfulness
         </Title>

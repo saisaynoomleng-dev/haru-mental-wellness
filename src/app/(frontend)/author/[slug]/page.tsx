@@ -78,7 +78,7 @@ const AuthorDetailPage = async ({
                 <Link
                   href={`${book.url}`}
                   key={book.title}
-                  className="w-full flex-1 group"
+                  className="max-w-[200px] flex-1 group"
                 >
                   <div className="overflow-hidden">
                     {book.mainImage?.asset?.url && (

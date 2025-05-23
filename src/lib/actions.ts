@@ -144,7 +144,7 @@ export const submitReview = async (
     desc,
   });
 
-  revalidatePath('/reviews');
+  revalidatePath('/review');
 
   return {
     status: 'success',

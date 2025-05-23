@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import { SlideInGroup } from './animations/Effects';
 
 const Banner = ({ className }: { className?: string }) => {
   return (
-    <div
+    <SlideInGroup
+      direction="bottom"
+      offset={50}
       className={clsx(
         'grid grid-cols-2 md:grid-cols-6 place-items-center gap-2 gap-y-10 my-5',
         className,
@@ -51,7 +54,7 @@ const Banner = ({ className }: { className?: string }) => {
         priority
         src="/brands/brand-6.svg"
       />
-    </div>
+    </SlideInGroup>
   );
 };
 

@@ -246,6 +246,12 @@ const AppointmentForm = ({
         )}
       </div>
 
+      <input
+        type="hidden"
+        name="date"
+        value={date ? format(date, 'yyyy-MM-dd') : ''}
+      />
+
       <Button
         disabled={isPending}
         type="submit"

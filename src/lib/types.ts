@@ -44,3 +44,29 @@ export type TherapistFilterProps = {
   therapist?: string;
   search?: string;
 };
+
+// effects
+export type CurtainEffectProps = {
+  direction: 'top' | 'bottom';
+  duration?: number;
+  delay?: number;
+  className?: string;
+  children: React.ReactNode;
+  offset?: number;
+};
+
+export type TypeWriterEffectProps = {
+  text: string;
+  duration?: number;
+  delay?: number;
+  className?: string;
+};
+
+export type SlideInEffectProps = {
+  children: React.ReactNode;
+  className?: string;
+  direction: 'top' | 'bottom' | 'left' | 'right';
+  duration?: number;
+  delay?: number;
+  offset?: number;
+};

@@ -24,7 +24,7 @@
 - Daily blog posts written by certified psychologists with different categories such as relationships, depressions, anger issues and much more.
 - Users can get free consulting on several treatments on depression, eating disorder, relationship, and stress.
 
-**Tech Stack**
+## Tech Stack
 
 - **Next.js**
 - **TypeScript**
